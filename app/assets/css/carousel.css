@@ -5,19 +5,19 @@
   padding: 20px;
 }
 
-.column {
+.carousel .column {
   flex: 1 1 30%;
   max-width: 30%;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.column img {
+.carousel .column img {
   max-height: 40vh;
   border-radius: 2px;
 }
 
-.column h2 {
+.carousel .column h2 {
   font-family: "EB Garamond", serif;
   text-transform: uppercase;
   font-size: 1.5em;
@@ -25,20 +25,21 @@
   margin: 10px 0 5px;
 }
 
-.column p {
+.carousel .column p {
   font-size: 1em;
   color: var(--grey);
+  text-align: left;
 }
 
 @media (max-width: 768px) {
-  .column {
+  .carousel .column {
     flex: 1 1 45%;
     max-width: 45%;
   }
 }
 
 @media (max-width: 480px) {
-  .column {
+  .carousel .column {
     flex: 1 1 100%;
     max-width: 100%;
   }
