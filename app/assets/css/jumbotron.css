@@ -1,0 +1,101 @@
+.jumbotron {
+  position: relative;
+  background-image: url("./../img/jumbotron.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 150px 20px 60px 20px;
+  overflow: hidden;
+}
+
+.jumbotron::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.jumbotron-content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  color: var(--white);
+}
+
+.left-content {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.contact-form {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.jumbotron-text {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.jumbotron-content h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: var(--sand);
+  text-transform: uppercase;
+}
+
+.jumbotron-content p {
+  line-height: 125%;
+}
+
+.contact-form {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-row input {
+  flex: 1;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  background-color: #333;
+  color: #ffffff;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #555;
+}

@@ -1,0 +1,81 @@
+.home-advisor {
+  background-color: #f97722;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center the text container */
+}
+
+.text-container {
+  text-align: center; /* Center the text */
+  margin-bottom: 20px; /* Space between text and white box */
+}
+
+.text-container h2 {
+  font-family: "EB Garamond", serif;
+  font-size: 4.5em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.text-container h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.white-box {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.flex-container {
+  display: flex;
+  gap: 20px;
+}
+
+.left-images,
+.right-image {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.left-images {
+  width: 35%;
+}
+
+.right-image {
+  width: 65%;
+}
+
+.left-images img {
+  max-height: 200px;
+}
+
+.right-image img {
+  max-height: 400px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .left-images,
+  .right-image {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .left-images img,
+  .right-image img {
+    width: 48%;
+  }
+}

@@ -1,0 +1,95 @@
+.header {
+  background-color: white;
+  padding: 25px 0;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  overflow: visible;
+  width: 100%;
+  z-index: 100;
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-container {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo {
+  height: 100px;
+  display: block;
+}
+
+.email,
+.phone {
+  font-size: 1.2em;
+  flex: 1;
+  text-align: center;
+  color: var(--white);
+}
+
+.email a,
+.phone a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.email a:hover,
+.phone a:hover {
+  opacity: 80%;
+}
+
+.phone {
+  text-align: right;
+}
+
+.email {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .logo-container {
+    position: relative;
+    top: 0;
+    margin-bottom: 10px;
+  }
+
+  .email,
+  .phone {
+    font-size: 1em;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  .phone {
+    order: 1;
+  }
+
+  .email {
+    order: 2;
+  }
+}

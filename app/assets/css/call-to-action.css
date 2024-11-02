@@ -1,0 +1,18 @@
+.call-to-action {
+  width: 100%;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.call-to-action h1 {
+  font-family: "EB Garamond", serif;
+  text-transform: uppercase;
+  font-size: 4.5em;
+  color: var(--black);
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+h1.cta-color {
+  color: var(--orange-hover);
+}
