@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div style="text-align: center;" align="center">
   <img src="app/assets/img/logo.svg" alt="Logo" style="width: 300px;" />
   <h1>Southeastern Stair Company</h1>
   <h2>You're one stop solution for quality stairs, installation & finishing!</h2>
