@@ -30,4 +30,8 @@ document.addEventListener("wheel", function (event) {
       behavior: "smooth",
     });
   }
+
+  // Update the year in the footer
+  const currentYear = document.getElementById("currentYear");
+  currentYear.innerHTML = new Date().getFullYear();
 });
