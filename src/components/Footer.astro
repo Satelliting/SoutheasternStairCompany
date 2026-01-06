@@ -1,0 +1,167 @@
+---
+import { footerQuickLinks, footerServices, site } from "../data/site";
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="bg-brand-secondary text-white pt-12 pb-6 md:pt-16 md:pb-8"
+  aria-label="Site Footer"
+>
+  <div class="container mx-auto px-4">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12"
+    >
+      <!-- Logo/About Section -->
+      <div class="space-y-4">
+        <a
+          href="/"
+          class="inline-block focus:outline-none focus:ring-2 focus:ring-white rounded"
+        >
+          <h2
+            class="text-xl md:text-2xl font-serif font-bold uppercase tracking-tighter leading-tight"
+          >
+            Southeastern<br />Stair Company
+          </h2>
+        </a>
+        <p class="text-xs md:text-sm opacity-80 leading-relaxed">
+          Southeastern Stair Company is the premier provider of bespoke
+          staircase solutions for luxury residential properties. Based in
+          Dallas, Georgia, we combine artisanal craftsmanship with modern design
+          to create architectural centerpieces that define the character of your
+          home.
+        </p>
+        <p class="text-xs md:text-sm opacity-80 leading-relaxed pt-1">
+          Based in Georgia, we serve elite homeowners and architects throughout
+          the Southeastern United States and are available for premier projects
+          nationwide across the US.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="hidden sm:block">
+        <h3
+          class="text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider border-b border-white/20 pb-2 inline-block"
+        >
+          Quick Links
+        </h3>
+        <nav aria-label="Footer Quick Links">
+          <ul class="space-y-2 md:space-y-3">
+            {
+              footerQuickLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-xs md:text-sm opacity-80 hover:opacity-100 transition-opacity focus:outline-none focus:underline"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Services -->
+      <div class="hidden sm:block">
+        <h3
+          class="text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider border-b border-white/20 pb-2 inline-block"
+        >
+          Services
+        </h3>
+        <ul class="space-y-2 md:space-y-3">
+          {
+            footerServices.map((service) => (
+              <li>
+                <a
+                  href={service.href}
+                  class="text-xs md:text-sm opacity-80 hover:opacity-100 transition-opacity focus:outline-none focus:underline"
+                >
+                  {service.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="pt-4 sm:pt-0">
+        <h3
+          class="text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider border-b border-white/20 pb-2 inline-block"
+        >
+          Contact Details
+        </h3>
+        <ul class="space-y-2 md:space-y-3 text-xs md:text-sm opacity-80">
+          <li class="flex items-start">
+            <span class="sr-only">Company Name: </span>{site.legalName}
+          </li>
+          <li>{site.contact.address.street}</li>
+          <li>
+            {site.contact.address.city}, {site.contact.address.region}{" "}
+            {site.contact.address.postalCode}
+          </li>
+          <li>
+            <a
+              href={`tel:${site.contact.phoneTel}`}
+              class="hover:underline focus:outline-none"
+              >Phone: {site.contact.phoneDisplay}</a
+            >
+          </li>
+          <li>
+            <a
+              href={`mailto:${site.contact.email}`}
+              class="hover:underline focus:outline-none"
+              >Email: {site.contact.email}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60"
+    >
+      <div
+        class="flex flex-col items-center md:items-start space-y-2 md:space-y-1"
+      >
+        <p>
+          &copy; {currentYear} Southeastern Stair Company, LLC. All rights reserved.
+        </p>
+        <p class="flex items-center">
+          Built with
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3 mx-1 text-red-500 fill-current"
+            viewBox="0 0 24 24"
+            stroke="none"
+          >
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+            ></path>
+          </svg>
+          by
+          <a
+            href="https://satelliting.space"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ml-1 hover:text-white transition-colors underline decoration-white/20"
+            >Satelliting</a
+          >
+        </p>
+      </div>
+      <nav class="flex space-x-6 mt-4 md:mt-0" aria-label="Footer Legal Links">
+        <a
+          href="/privacy"
+          class="hover:opacity-100 transition-opacity focus:outline-none focus:underline"
+          >Privacy Policy</a
+        >
+        <a
+          href="/terms"
+          class="hover:opacity-100 transition-opacity focus:outline-none focus:underline"
+          >Terms of Service</a
+        >
+      </nav>
+    </div>
+  </div>
+</footer>

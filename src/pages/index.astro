@@ -1,0 +1,368 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const features = [
+  {
+    title: "Custom Staircase Design",
+    desc: "From traditional to contemporary, we design stairs that fit your home perfectly.",
+    img: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=800",
+    href: "/services/custom-stair-design",
+  },
+  {
+    title: "Quality Craftsmanship",
+    desc: "Our skilled craftsmen ensure every detail is perfect, from the rails to the treads.",
+    img: "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?auto=format&fit=crop&q=80&w=800",
+    href: "/services/quality-craftsmanship",
+  },
+  {
+    title: "Complete Stair Solutions",
+    desc: "We handle everything from initial design to final finishing and installation.",
+    img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800",
+    href: "/services/installation-finishing",
+  },
+];
+---
+
+<Layout
+  title="Home"
+  description="Southeastern Stair Company - Your one-stop solution for quality custom stairs, installation, and finishing."
+>
+  <!-- Hero Section -->
+  <section
+    class="relative min-h-[700px] md:h-[600px] flex items-center bg-gray-900 overflow-hidden py-20 md:py-0"
+  >
+    <div class="absolute inset-0 z-0">
+      <div class="w-full h-full bg-black/65 absolute z-10"></div>
+      <img
+        src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=2070"
+        alt="Elegant wooden staircase with intricate railing in a modern home"
+        class="w-full h-full object-cover"
+        width="2070"
+        height="1380"
+      />
+    </div>
+
+    <div class="container mx-auto px-4 relative z-20">
+      <div
+        class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 md:gap-32 items-center"
+      >
+        <div class="text-white text-center md:text-left mb-12 md:mb-0">
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight uppercase font-serif font-bold drop-shadow-xl"
+          >
+            Custom <span class="text-brand-primary">Staircase</span> Excellence
+          </h1>
+          <p
+            class="text-lg md:text-xl opacity-90 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0"
+          >
+            Southeastern Stair Company delivers premium, hand-crafted stair
+            systems for residences across the Southeast and projects nationwide
+            across the United States.
+          </p>
+        </div>
+
+        <div
+          class="bg-white p-6 md:p-10 rounded-lg shadow-2xl relative w-full max-w-md mx-auto md:ml-auto"
+        >
+          <h2
+            class="text-2xl text-brand-dark mb-6 uppercase text-center font-bold"
+          >
+            Start Your Project
+          </h2>
+          <form class="space-y-4" action="/contact" method="GET">
+            <div>
+              <label for="hero-name" class="sr-only">Name</label>
+              <input
+                type="text"
+                id="hero-name"
+                name="name"
+                placeholder="Name"
+                required
+                class="w-full px-4 py-3 border border-gray-200 focus:border-brand-primary outline-none transition-colors rounded"
+              />
+            </div>
+            <div>
+              <label for="hero-email" class="sr-only">Email</label>
+              <input
+                type="email"
+                id="hero-email"
+                name="email"
+                placeholder="Email"
+                required
+                class="w-full px-4 py-3 border border-gray-200 focus:border-brand-primary outline-none transition-colors rounded"
+              />
+            </div>
+            <div>
+              <label for="hero-phone" class="sr-only">Phone</label>
+              <input
+                type="tel"
+                id="hero-phone"
+                name="phone"
+                placeholder="Phone"
+                required
+                class="w-full px-4 py-3 border border-gray-200 focus:border-brand-primary outline-none transition-colors rounded"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-brand-secondary text-white font-bold py-4 uppercase tracking-widest hover:bg-brand-primary transition-colors cursor-pointer rounded shadow-md"
+            >
+              Get My Estimate
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 md:py-24 bg-white" aria-labelledby="features-title">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 md:mb-20">
+        <h2
+          id="features-title"
+          class="text-3xl md:text-5xl uppercase mb-4 font-bold leading-tight"
+        >
+          Craftsmanship Meets Compliance
+        </h2>
+        <p
+          class="text-brand-secondary font-bold uppercase tracking-widest text-sm md:text-base"
+        >
+          Designed For Your Life
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+        {
+          features.map((feature) => (
+            <div class="text-center group">
+              <a href={feature.href} class="block">
+                <div class="mb-6 overflow-hidden aspect-[4/3] md:h-64 bg-gray-100 rounded-lg shadow-md">
+                  <img
+                    src={feature.img}
+                    alt={feature.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    width="800"
+                    height="600"
+                  />
+                </div>
+                <h3 class="text-lg md:text-xl mb-3 md:mb-4 uppercase font-bold group-hover:text-brand-primary transition-colors px-2">
+                  {feature.title}
+                </h3>
+              </a>
+              <p class="text-gray-600 leading-relaxed text-sm px-4">
+                {feature.desc}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section
+    class="py-16 md:py-24 bg-brand-secondary text-white overflow-hidden"
+    aria-labelledby="testimonials-title"
+  >
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 md:mb-16">
+        <h2
+          id="testimonials-title"
+          class="text-3xl md:text-5xl uppercase mb-4 font-bold leading-tight"
+        >
+          Customer Testimonials
+        </h2>
+        <p class="opacity-80 text-base md:text-lg max-w-2xl mx-auto">
+          The Southeastern Stair Company legacy is built on the satisfaction of
+          our clients across the nation.
+        </p>
+      </div>
+
+      <div class="relative max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div
+            class="bg-white p-6 md:p-8 rounded-lg shadow-xl text-brand-dark transform hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div class="text-brand-primary text-3xl md:text-4xl mb-3 md:mb-4">
+              "
+            </div>
+            <p class="italic mb-6 text-sm md:text-base">
+              "Absolute masterwork. The custom white oak staircase they designed
+              for our entryway is the first thing guests mention when they walk
+              in."
+            </p>
+            <footer
+              class="font-bold uppercase tracking-widest text-[10px] md:text-sm text-gray-500"
+            >
+              — David S., Buckhead
+            </footer>
+          </div>
+          <div
+            class="bg-white p-6 md:p-8 rounded-lg shadow-xl text-brand-dark transform hover:-translate-y-2 transition-transform duration-300 md:mt-8"
+          >
+            <div class="text-brand-primary text-3xl md:text-4xl mb-3 md:mb-4">
+              "
+            </div>
+            <p class="italic mb-6 text-sm md:text-base">
+              "From the first consultation in Dallas to the final finish, the
+              professionalism was unmatched. Best contractor experience we've
+              ever had."
+            </p>
+            <footer
+              class="font-bold uppercase tracking-widest text-[10px] md:text-sm text-gray-500"
+            >
+              — Sarah L., Marietta
+            </footer>
+          </div>
+          <div
+            class="bg-white p-6 md:p-8 rounded-lg shadow-xl text-brand-dark transform hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div class="text-brand-primary text-3xl md:text-4xl mb-3 md:mb-4">
+              "
+            </div>
+            <p class="italic mb-6 text-sm md:text-base">
+              "We upgraded our old wood balusters to iron, and it completely
+              transformed our home. Fast, clean, and beautiful craftsmanship."
+            </p>
+            <footer
+              class="font-bold uppercase tracking-widest text-[10px] md:text-sm text-gray-500"
+            >
+              — Michael R., Alpharetta
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Sections -->
+  <section class="py-24 bg-gray-50" aria-labelledby="excellence-title">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:grid md:grid-cols-2 items-center gap-16">
+        <div class="flex-1">
+          <h2
+            id="excellence-title"
+            class="text-3xl md:text-4xl uppercase mb-2 font-bold"
+          >
+            Award-Winning Excellence
+          </h2>
+          <p
+            class="text-brand-secondary font-bold uppercase tracking-widest mb-6"
+          >
+            HomeAdvisor Screened, Approved, and Top-Rated
+          </p>
+          <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+            Southeastern Stair Company is proud to be a multi-year winner of
+            HomeAdvisor's "Elite Service" and "Top Rated" awards. We are a fully
+            screened and approved contractor, committed to maintaining the
+            highest standards of safety and aesthetic perfection in every
+            project.
+          </p>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Our team specializes in high-end residential staircases, ensuring
+            that every project meets both strict building codes and the
+            discerning tastes of our luxury clients. From initial consultation
+            to final inspection, we provide a transparent, stress-free
+            experience backed by over 15 years of industry excellence.
+          </p>
+          <a
+            href="/contact"
+            class="inline-block bg-brand-dark text-white px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors focus:ring-2 focus:ring-brand-primary focus:outline-none shadow-lg"
+            >Partner With The Best</a
+          >
+        </div>
+        <div class="flex-1">
+          <div class="relative">
+            <div
+              class="absolute -top-4 -left-4 w-24 h-24 bg-brand-primary/10 rounded-full z-0"
+            >
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1590060205833-281b37494cc1?auto=format&fit=crop&q=80&w=800"
+              alt="Elite craftsmanship on a custom luxury staircase"
+              class="shadow-2xl rounded relative z-10 w-full"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white" aria-labelledby="importance-title">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:grid md:grid-cols-2 items-center gap-16">
+        <div class="flex-1 md:order-2">
+          <h2
+            id="importance-title"
+            class="text-3xl md:text-4xl uppercase mb-4 font-bold"
+          >
+            The Art of the Staircase
+          </h2>
+          <p
+            class="text-brand-secondary font-bold uppercase tracking-widest mb-6"
+          >
+            Defining Your Home's Character
+          </p>
+          <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+            In a luxury home, the staircase is not merely a path between
+            floors—it is a central architectural statement. It is the first
+            piece of furniture your guests see and a functional art piece that
+            sets the tone for your entire interior design.
+          </p>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            We specialize in creating systems that blend seamless structural
+            integrity with stunning visual flow. Whether it's the rich grain of
+            premium white oak or the sleek lines of a modern glass railing, we
+            ensure your staircase reflects your unique style and enhances your
+            home's value.
+          </p>
+          <a
+            href="/about"
+            class="inline-block bg-brand-dark text-white px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors focus:ring-2 focus:ring-brand-primary focus:outline-none shadow-lg"
+            >Explore Our Philosophy</a
+          >
+        </div>
+        <div class="flex-1 md:order-1">
+          <div class="relative">
+            <div
+              class="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-secondary/10 rounded-full z-0"
+            >
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800"
+              alt="Grand architectural staircase centerpiece"
+              class="shadow-2xl rounded relative z-10 w-full"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 md:py-32 bg-gray-50 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-5xl uppercase mb-4 font-bold leading-tight">
+        Transform Your Space With
+      </h2>
+      <p
+        class="text-2xl md:text-4xl text-brand-secondary uppercase mb-10 md:mb-16 font-bold leading-tight"
+      >
+        Custom Stair Design and <br class="hidden md:block" /> Expert Craftsmanship!
+      </p>
+      <a
+        href="/contact"
+        class="inline-block bg-brand-dark text-white px-8 md:px-12 py-4 md:py-5 text-lg md:text-xl uppercase tracking-[0.2em] font-bold hover:bg-brand-primary transition-colors shadow-lg focus:ring-2 focus:ring-brand-primary focus:outline-none rounded w-full md:w-auto"
+        >Get A Quote</a
+      >
+    </div>
+  </section>
+</Layout>

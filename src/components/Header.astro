@@ -1,0 +1,162 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.svg";
+import { navItems, site } from "../data/site";
+
+const { pathname } = Astro.url;
+const normalizedPathname = pathname.replace(/\/$/, "");
+
+const isActive = (path: string) => {
+  if (path === "/" && (normalizedPathname === "" || normalizedPathname === "/"))
+    return true;
+  return normalizedPathname.startsWith(path) && path !== "/";
+};
+---
+
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+  <div
+    class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center"
+  >
+    <div class="flex items-center mb-4 md:mb-0">
+      <a
+        href="/"
+        class="flex items-center focus:outline-none focus:ring-2 focus:ring-brand-primary"
+        aria-label="Southeastern Stair Company - Home"
+      >
+        <Image
+          src={logo}
+          alt="Southeastern Stair Company Logo"
+          width={220}
+          height={60}
+          class="h-12 md:h-16 w-auto object-contain"
+          loading="eager"
+        />
+      </a>
+    </div>
+
+    <div class="flex flex-col items-center md:items-end w-full md:w-auto">
+      <div class="hidden md:flex space-x-6 text-sm mb-4">
+        <a
+          href={`tel:${site.contact.phoneTel}`}
+          class="flex items-center text-brand-secondary font-bold hover:text-brand-primary transition-colors focus:outline-none focus:underline"
+        >
+          <span class="mr-2">{site.contact.phoneDisplay}</span>
+        </a>
+        <a
+          href={`mailto:${site.contact.email}`}
+          class="flex items-center text-gray-600 hover:text-brand-primary transition-colors focus:outline-none focus:underline"
+        >
+          <span>{site.contact.email}</span>
+        </a>
+      </div>
+
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <button
+          id="menu-toggle"
+          class="md:hidden p-2 text-gray-600 hover:text-brand-primary focus:outline-none"
+          aria-label="Toggle Menu"
+          aria-controls="main-nav"
+          aria-expanded="false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              id="menu-icon"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+
+        <nav id="main-nav" class="hidden md:block" aria-label="Main Navigation">
+          <ul
+            class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent p-4 md:p-0 border-b md:border-none border-gray-100 shadow-lg md:shadow-none z-50"
+          >
+            {
+              navItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class:list={[
+                      "text-sm font-semibold uppercase tracking-widest transition-colors duration-200 py-2 border-b-2 focus:outline-none block",
+                      isActive(item.href)
+                        ? "text-brand-primary border-brand-primary"
+                        : "text-gray-600 border-transparent hover:text-brand-primary hover:border-brand-primary/30",
+                    ]}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+            <li class="md:hidden pt-4 border-t border-gray-100">
+              <a
+                href={`tel:${site.contact.phoneTel}`}
+                class="block text-brand-secondary font-bold py-2"
+                >{site.contact.phoneDisplay}</a
+              >
+              <a
+                href={`mailto:${site.contact.email}`}
+                class="block text-gray-600 text-sm py-2">{site.contact.email}</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const mainNav = document.getElementById("main-nav");
+  const menuIcon = document.getElementById("menu-icon");
+
+  const setExpanded = (expanded: boolean) => {
+    if (!menuToggle || !mainNav) return;
+    menuToggle.setAttribute("aria-expanded", expanded.toString());
+    mainNav.classList.toggle("hidden", !expanded);
+
+    if (menuIcon) {
+      if (expanded) {
+        menuIcon.setAttribute("d", "M6 18L18 6M6 6l12 12");
+      } else {
+        menuIcon.setAttribute("d", "M4 6h16M4 12h16m-7 6h7");
+      }
+    }
+  };
+
+  menuToggle?.addEventListener("click", () => {
+    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+    setExpanded(!isExpanded);
+  });
+
+  // Close mobile menu when a navigation link is clicked
+  mainNav?.addEventListener("click", (event: MouseEvent) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const link = target.closest("a");
+    if (!link) return;
+
+    const isExpanded = menuToggle?.getAttribute("aria-expanded") === "true";
+    if (isExpanded) {
+      setExpanded(false);
+    }
+  });
+
+  // Close on Escape
+  document.addEventListener("keydown", (event: KeyboardEvent) => {
+    if (event.key !== "Escape") return;
+    const isExpanded = menuToggle?.getAttribute("aria-expanded") === "true";
+    if (isExpanded) {
+      setExpanded(false);
+    }
+  });
+</script>

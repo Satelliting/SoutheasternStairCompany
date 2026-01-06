@@ -1,0 +1,113 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { services } from "../../data/site";
+
+export async function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+---
+
+<Layout title={service.title} description={service.description}>
+  <article class="py-20">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <nav aria-label="Breadcrumb" class="mb-12">
+        <a
+          href="/services"
+          class="inline-flex items-center text-sm font-bold uppercase tracking-widest text-brand-secondary hover:text-brand-primary transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          All Services
+        </a>
+      </nav>
+
+      <header class="mb-8 md:mb-12">
+        <h1
+          class="text-3xl md:text-5xl lg:text-6xl uppercase mb-6 md:mb-8 font-bold leading-tight"
+        >
+          {service.title}
+        </h1>
+        <div
+          class="aspect-video rounded-lg overflow-hidden shadow-xl md:shadow-2xl mb-8 md:mb-12"
+        >
+          <img
+            src={service.image}
+            alt={service.title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </header>
+
+      <div
+        class="prose prose-base md:prose-lg max-w-none prose-headings:uppercase prose-headings:font-bold prose-brand prose-p:leading-relaxed prose-li:mb-2"
+      >
+        <Fragment set:html={service.content} />
+      </div>
+
+      <div
+        class="mt-12 md:mt-20 p-6 md:p-12 bg-brand-light rounded-lg text-center border border-brand-primary/10"
+      >
+        <h2 class="text-2xl md:text-3xl uppercase font-bold mb-4 md:mb-6">
+          Ready to discuss your project?
+        </h2>
+        <p
+          class="text-lg md:text-xl text-gray-600 mb-8 md:mb-10 max-w-2xl mx-auto"
+        >
+          Contact our team today to learn more about how our {
+            service.title.toLowerCase()
+          } can benefit your home or business.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="/contact"
+            class="bg-brand-secondary text-white px-8 md:px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors text-sm md:text-base"
+          >
+            Contact Us Today
+          </a>
+          <a
+            href="/recent-work"
+            class="bg-white text-brand-dark px-8 md:px-10 py-4 uppercase tracking-widest font-bold border border-gray-200 hover:border-brand-primary transition-colors text-sm md:text-base"
+          >
+            View Our Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+  @reference "../../styles/global.css";
+
+  .prose h2 {
+    @apply text-3xl mt-16 mb-8 text-brand-dark border-b border-brand-primary/20 pb-4;
+  }
+  .prose h3 {
+    @apply text-2xl mt-12 mb-6 text-brand-secondary uppercase tracking-wider;
+  }
+  .prose p {
+    @apply text-gray-700 mb-8;
+  }
+  .prose ul {
+    @apply list-disc pl-6 mb-8 space-y-4;
+  }
+  .prose strong {
+    @apply text-brand-dark font-bold;
+  }
+</style>

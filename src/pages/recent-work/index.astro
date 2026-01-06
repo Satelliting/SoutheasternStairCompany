@@ -1,0 +1,120 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("recent-work");
+const sortedProjects = projects.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<Layout
+  title="Recent Work"
+  description="Explore our portfolio of custom staircase designs, quality craftsmanship, and complete stair solutions in the Southeastern region."
+>
+  <section
+    class="py-12 md:py-20 bg-brand-light"
+    aria-labelledby="portfolio-title"
+  >
+    <div class="container mx-auto px-4 text-center">
+      <h1
+        id="portfolio-title"
+        class="text-3xl md:text-5xl uppercase mb-6 font-bold leading-tight"
+      >
+        Recent Work
+      </h1>
+      <p
+        class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+      >
+        Explore our portfolio of bespoke custom staircases and artisanal railing
+        systems across the nation.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20" aria-label="Project Gallery">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        {
+          sortedProjects.map((project) => (
+            <article class="group bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 transition-transform duration-300 hover:-translate-y-2">
+              <div class="aspect-video md:h-80 overflow-hidden bg-gray-100">
+                <img
+                  src={project.data.image}
+                  alt={`Custom stair project: ${project.data.title}`}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </div>
+              <div class="p-6 md:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-secondary bg-brand-light px-3 py-1 rounded">
+                    {project.data.category}
+                  </span>
+                  <time
+                    datetime={project.data.publishDate.toISOString()}
+                    class="text-xs md:text-sm text-gray-500"
+                  >
+                    {project.data.publishDate.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                </div>
+                <h2 class="text-xl md:text-2xl uppercase mb-4 group-hover:text-brand-primary transition-colors font-bold leading-tight">
+                  <a href={`/recent-work/${project.slug}`}>
+                    {project.data.title}
+                  </a>
+                </h2>
+                <p class="text-gray-600 text-sm md:text-base mb-6 line-clamp-2 leading-relaxed">
+                  {project.data.description}
+                </p>
+                <a
+                  href={`/recent-work/${project.slug}`}
+                  class="inline-flex items-center text-xs md:text-sm font-bold uppercase tracking-widest text-brand-dark hover:text-brand-primary transition-colors focus:ring-2 focus:ring-brand-primary focus:outline-none"
+                >
+                  View Project Details
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 ml-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section
+    class="py-16 md:py-20 bg-gray-50 border-t border-gray-100 text-center"
+  >
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl uppercase mb-8 font-bold leading-tight">
+        Have a similar project in mind?
+      </h2>
+      <a
+        href="/contact"
+        class="inline-block bg-brand-secondary text-white px-8 md:px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors text-sm md:text-base rounded shadow-md"
+      >
+        Get A Free Estimate
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,98 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const lastUpdated = "January 5, 2026";
+const siteHostname = new URL(site.baseUrl).hostname;
+---
+
+<Layout
+  title="Privacy Policy"
+  description="Privacy Policy for Southeastern Stair Company. Learn how we handle your data."
+>
+  <section class="py-12 md:py-20 bg-brand-light">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-5xl uppercase mb-6 font-bold leading-tight">
+        Privacy Policy
+      </h1>
+      <p
+        class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+      >
+        Your privacy is important to us.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-20">
+    <div
+      class="container mx-auto px-4 max-w-3xl prose prose-sm md:prose-lg prose-brand prose-headings:uppercase prose-headings:font-bold prose-headings:text-brand-dark prose-p:leading-relaxed prose-li:leading-relaxed"
+    >
+      <p>Last Updated: {lastUpdated}</p>
+
+      <p>
+        At Southeastern Stair Company, accessible from
+        {siteHostname}, one of our main priorities is the privacy of our
+        visitors. This Privacy Policy document contains types of information
+        that is collected and recorded by Southeastern Stair Company and how we
+        use it.
+      </p>
+
+      <h2>Information We Collect</h2>
+      <p>
+        The personal information that you are asked to provide, and the reasons
+        why you are asked to provide it, will be made clear to you at the point
+        we ask you to provide your personal information.
+      </p>
+      <p>
+        If you contact us directly via our contact form, we may receive
+        additional information about you such as your name, email address, phone
+        number, the contents of the message and/or attachments you may send us,
+        and any other information you may choose to provide.
+      </p>
+
+      <h2>How We Use Your Information</h2>
+      <p>We use the information we collect in various ways, including to:</p>
+      <ul>
+        <li>Provide, operate, and maintain our website</li>
+        <li>Improve, personalize, and expand our website</li>
+        <li>Understand and analyze how you use our website</li>
+        <li>Develop new products, services, features, and functionality</li>
+        <li>
+          Communicate with you, either directly or through one of our partners,
+          including for customer service, to provide you with updates and other
+          information relating to the website, and for marketing and promotional
+          purposes
+        </li>
+        <li>Send you emails</li>
+        <li>Find and prevent fraud</li>
+      </ul>
+
+      <h2>Log Files</h2>
+      <p>
+        Southeastern Stair Company follows a standard procedure of using log
+        files. These files log visitors when they visit websites. All hosting
+        companies do this and a part of hosting services' analytics. The
+        information collected by log files include internet protocol (IP)
+        addresses, browser type, Internet Service Provider (ISP), date and time
+        stamp, referring/exit pages, and possibly the number of clicks.
+      </p>
+
+      <h2>Cookies and Web Beacons</h2>
+      <p>
+        Like any other website, Southeastern Stair Company uses "cookies". These
+        cookies are used to store information including visitors' preferences,
+        and the pages on the website that the visitor accessed or visited. The
+        information is used to optimize the users' experience by customizing our
+        web page content based on visitors' browser type and/or other
+        information.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have additional questions or require more information about our
+        Privacy Policy, do not hesitate to contact us at
+        {site.contact.email}.
+      </p>
+    </div>
+  </section>
+</Layout>

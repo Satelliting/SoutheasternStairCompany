@@ -1,0 +1,119 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = "Southeastern Stair Company - Premium hand-crafted stair systems for luxury residences across the Southeast and projects nationwide.",
+  image = "/og-image.jpg",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || site.baseUrl).href,
+  noindex = false,
+} = Astro.props;
+
+const siteName = site.name;
+const fullTitle = `${title} | ${siteName}`;
+const ogImageUrl = new URL(image, canonicalURL);
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.name,
+  image: new URL("/og-image.jpg", site.baseUrl).href,
+  "@id": site.baseUrl,
+  url: site.baseUrl,
+  telephone: site.contact.phoneE164,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.contact.address.street,
+    addressLocality: site.contact.address.city,
+    addressRegion: site.contact.address.region,
+    postalCode: site.contact.address.postalCode,
+    addressCountry: site.contact.address.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: site.hours.days,
+    opens: site.hours.opens,
+    closes: site.hours.closes,
+  },
+  sameAs: [site.social.facebook, site.social.instagram],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#d35400" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageUrl} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Local Business Schema -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(localBusinessSchema)}
+    />
+  </head>
+  <body class="bg-white text-brand-dark flex flex-col min-h-screen">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
