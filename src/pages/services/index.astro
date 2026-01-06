@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { services } from "../../data/site";
+import { withBase } from "../../utils/withBase";
 ---
 
 <Layout
@@ -52,7 +53,7 @@ import { services } from "../../data/site";
                 {service.description}
               </p>
               <a
-                href={`/services/${service.slug}`}
+                href={withBase(`/services/${service.slug}`)}
                 class="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-widest text-brand-secondary hover:text-brand-primary transition-colors"
               >
                 Learn More
@@ -88,7 +89,7 @@ import { services } from "../../data/site";
         today to discuss your specific requirements.
       </p>
       <a
-        href="/contact"
+        href={withBase("/contact")}
         class="inline-block bg-white text-brand-secondary px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-light transition-colors"
       >
         Get A Free Estimate

@@ -1,24 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import { withBase } from "../utils/withBase";
 
 const features = [
   {
     title: "Custom Staircase Design",
     desc: "From traditional to contemporary, we design stairs that fit your home perfectly.",
     img: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=800",
-    href: "/services/custom-stair-design",
+    href: withBase("/services/custom-stair-design"),
   },
   {
     title: "Quality Craftsmanship",
     desc: "Our skilled craftsmen ensure every detail is perfect, from the rails to the treads.",
     img: "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?auto=format&fit=crop&q=80&w=800",
-    href: "/services/quality-craftsmanship",
+    href: withBase("/services/quality-craftsmanship"),
   },
   {
     title: "Complete Stair Solutions",
     desc: "We handle everything from initial design to final finishing and installation.",
     img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800",
-    href: "/services/installation-finishing",
+    href: withBase("/services/installation-finishing"),
   },
 ];
 ---
@@ -69,7 +71,7 @@ const features = [
           >
             Start Your Project
           </h2>
-          <form class="space-y-4" action="/contact" method="GET">
+          <form class="space-y-4" action={withBase("/contact")} method="GET">
             <div>
               <label for="hero-name" class="sr-only">Name</label>
               <input
@@ -268,7 +270,7 @@ const features = [
             experience backed by over 15 years of industry excellence.
           </p>
           <a
-            href="/contact"
+            href={withBase("/contact")}
             class="inline-block bg-brand-dark text-white px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors focus:ring-2 focus:ring-brand-primary focus:outline-none shadow-lg"
             >Partner With The Best</a
           >
@@ -322,7 +324,7 @@ const features = [
             home's value.
           </p>
           <a
-            href="/about"
+            href={withBase("/about")}
             class="inline-block bg-brand-dark text-white px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors focus:ring-2 focus:ring-brand-primary focus:outline-none shadow-lg"
             >Explore Our Philosophy</a
           >
@@ -359,7 +361,7 @@ const features = [
         Custom Stair Design and <br class="hidden md:block" /> Expert Craftsmanship!
       </p>
       <a
-        href="/contact"
+        href={withBase("/contact")}
         class="inline-block bg-brand-dark text-white px-8 md:px-12 py-4 md:py-5 text-lg md:text-xl uppercase tracking-[0.2em] font-bold hover:bg-brand-primary transition-colors shadow-lg focus:ring-2 focus:ring-brand-primary focus:outline-none rounded w-full md:w-auto"
         >Get A Quote</a
       >

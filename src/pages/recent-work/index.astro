@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../../utils/withBase";
 
 const projects = await getCollection("recent-work");
 const sortedProjects = projects.sort(
@@ -65,7 +66,7 @@ const sortedProjects = projects.sort(
                   </time>
                 </div>
                 <h2 class="text-xl md:text-2xl uppercase mb-4 group-hover:text-brand-primary transition-colors font-bold leading-tight">
-                  <a href={`/recent-work/${project.slug}`}>
+                  <a href={withBase(`/recent-work/${project.slug}`)}>
                     {project.data.title}
                   </a>
                 </h2>
@@ -73,7 +74,7 @@ const sortedProjects = projects.sort(
                   {project.data.description}
                 </p>
                 <a
-                  href={`/recent-work/${project.slug}`}
+                  href={withBase(`/recent-work/${project.slug}`)}
                   class="inline-flex items-center text-xs md:text-sm font-bold uppercase tracking-widest text-brand-dark hover:text-brand-primary transition-colors focus:ring-2 focus:ring-brand-primary focus:outline-none"
                 >
                   View Project Details
@@ -110,7 +111,7 @@ const sortedProjects = projects.sort(
         Have a similar project in mind?
       </h2>
       <a
-        href="/contact"
+        href={withBase("/contact")}
         class="inline-block bg-brand-secondary text-white px-8 md:px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors text-sm md:text-base rounded shadow-md"
       >
         Get A Free Estimate

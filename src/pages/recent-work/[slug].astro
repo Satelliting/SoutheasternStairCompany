@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { withBase } from "../../utils/withBase";
 
 export async function getStaticPaths() {
   const projects = await getCollection("recent-work");
@@ -19,7 +20,7 @@ const { Content } = await entry.render();
     <div class="container mx-auto px-4 max-w-4xl">
       <nav aria-label="Breadcrumb" class="mb-8">
         <a
-          href="/recent-work"
+          href={withBase("/recent-work")}
           class="inline-flex items-center text-sm font-bold uppercase tracking-widest text-brand-secondary hover:text-brand-primary transition-colors focus:outline-none focus:ring-2 focus:ring-brand-primary"
         >
           <svg
@@ -100,7 +101,7 @@ const { Content } = await entry.render();
           Interested in a project like this?
         </h3>
         <a
-          href="/contact"
+          href={withBase("/contact")}
           class="bg-brand-dark text-white px-10 py-4 uppercase tracking-widest font-bold hover:bg-brand-primary transition-colors focus:outline-none focus:ring-2 focus:ring-brand-primary rounded shadow-md w-full md:w-auto text-center text-sm md:text-base"
         >
           Get Started

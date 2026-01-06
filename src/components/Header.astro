@@ -2,14 +2,20 @@
 import { Image } from "astro:assets";
 import logo from "../assets/logo.svg";
 import { navItems, site } from "../data/site";
+import { withBase } from "../utils/withBase";
 
 const { pathname } = Astro.url;
-const normalizedPathname = pathname.replace(/\/$/, "");
+const normalizedPathname = pathname.replace(/\/$/, "") || "/";
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const pathnameNoBase =
+  basePath && normalizedPathname.startsWith(basePath)
+    ? normalizedPathname.slice(basePath.length) || "/"
+    : normalizedPathname;
 
 const isActive = (path: string) => {
-  if (path === "/" && (normalizedPathname === "" || normalizedPathname === "/"))
+  if (path === "/" && (pathnameNoBase === "" || pathnameNoBase === "/"))
     return true;
-  return normalizedPathname.startsWith(path) && path !== "/";
+  return pathnameNoBase.startsWith(path) && path !== "/";
 };
 ---
 
@@ -19,7 +25,7 @@ const isActive = (path: string) => {
   >
     <div class="flex items-center mb-4 md:mb-0">
       <a
-        href="/"
+        href={withBase("/")}
         class="flex items-center focus:outline-none focus:ring-2 focus:ring-brand-primary"
         aria-label="Southeastern Stair Company - Home"
       >
@@ -82,7 +88,7 @@ const isActive = (path: string) => {
               navItems.map((item) => (
                 <li>
                   <a
-                    href={item.href}
+                    href={withBase(item.href)}
                     class:list={[
                       "text-sm font-semibold uppercase tracking-widest transition-colors duration-200 py-2 border-b-2 focus:outline-none block",
                       isActive(item.href)
